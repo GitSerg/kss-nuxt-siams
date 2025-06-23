@@ -8,10 +8,12 @@ export default defineEventHandler(async (event) => {
       ...users,
       error: '',
     }
-  } catch (error) {
+  } catch (e) {
+    const err = e as Error
     return {
       data: [], 
-      error,
+      error: err.message || err,
+      stack: err.stack,
     }
   }
 })
