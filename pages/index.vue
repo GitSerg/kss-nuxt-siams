@@ -98,10 +98,10 @@
 </script>
 
 <template>
-  <div v-if="error && !isPending">
-    <p style="color: red;">{{ error }}</p>
+  <div class="pb-4 text-red-600" v-if="error && !isPending">
+    <p>{{ error }}</p>
   </div>
-  <PaginationNav v-model:limit-ref="limitRef" :pages="cachedPagesRef" v-model:page-ref="pageRef" :selectLimitOptions="SELECT_LIMIT_OPTION"></PaginationNav>
+  <PaginationNav v-if="!isPending" v-model:limit-ref="limitRef" :pages="cachedPagesRef" v-model:page-ref="pageRef" :selectLimitOptions="SELECT_LIMIT_OPTION"></PaginationNav>
   <div class="animate-pulse" v-if="isPending">Loading...</div>
   <div class="p-4 border-1 rounded-md border-slate-600" v-if="!isPending">
     <div 

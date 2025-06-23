@@ -147,9 +147,12 @@
       "password": "12345"
     },
     {
-      "id": "814f",
       "email": "MtpMcEnGbfj7gz@mail.ru",
-      "password": "12345"
+      "password": "12345",
+      "sex": "w",
+      "lastName": "asdaga",
+      "firstName": "asdasasg",
+      "id": "814f"
     },
     {
       "id": "ba8a",
@@ -272,9 +275,11 @@
       "password": "12345"
     },
     {
-      "id": "d310",
       "email": "kIp4ZggYM@mail.ru",
-      "password": "12345"
+      "password": "12345",
+      "lastName": "dsfsdg",
+      "firstName": "sdgsh",
+      "id": "d310"
     },
     {
       "id": "3d17",

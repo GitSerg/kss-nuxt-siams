@@ -10,6 +10,7 @@ import type { IUser } from '~/interfaces/User'
     method?: 'POST' | 'PUT',
   }>()
   const isPending = ref(false)
+  const isHaveTrySend = ref(false)
   
   const email = ref('')
   const password = ref('')
@@ -29,7 +30,11 @@ import type { IUser } from '~/interfaces/User'
   
   async function asyncFnSubmit(): Promise<void> {
     isPending.value = true
+    isHaveTrySend.value = true
     try {
+      if (!sex.value) {
+        throw new Error('Sex required')
+      }
       const { user, error: requestError } = await $fetch<{ user: IUser, error: Error }>(props.postUrl, {
         method: props.method || 'POST',
         body: {
@@ -45,6 +50,7 @@ import type { IUser } from '~/interfaces/User'
         error.value = requestError.message
       } else {
         await props.fnAfterPost(user)
+        isHaveTrySend.value = false
       }
     } catch (e) {
       console.error(e)
@@ -73,7 +79,7 @@ import type { IUser } from '~/interfaces/User'
       <Input v-model:value="firstName" id="firstName" label="First Name" placeholder="Vasya" type="text" />
     </div> 
     <!-- Sex choice radio buttons start -->
-    <div class="mb-6">
+    <div class="mb-6" :class="{ 'border-red-800 border-1': isHaveTrySend && !sex }">
       <div class="flex items-center mb-4">
         <input id="sex-radio-1" type="radio" value="m" name="sex-radio" v-model="sex"
           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
